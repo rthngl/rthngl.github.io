@@ -1,6 +1,121 @@
----
-layout: default
-title: fam celebs
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+	content="width=device-width, initial-scale=1.0">
+	<title>COLOR</title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+	<!-- navbar section -->
+	<nav class="navbar">
+		<div class="navbar__container">
+			<a href="#home" id="navbar__logo">test</a>
+			<div class="navbar__toggle" id="mobile-menu">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+			<ul class="navbar__menu">
+				<li class="navbar__item">
+					<a href="#home" class="navbar__links" id="home-page">Home</a>
+				</li>
+				<li class="navbar__item">
+					<a href="#input" class="navbar__links" id="input-page">Input</a>
+				</li>
+				<li class="navbar__item">
+					<a href="#myturn" class="navbar__links" id="myturn-page">My Turn</a>
+				</li>
+				<li class="navbar__btn">
+					<a href="#clearall" class="button" id="clearall">Clear All</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<!-- hero section -->
+	<div class="hero" id="home">
+		<div class="hero__container">
+			<h1 class="hero__heading">let's play <span>celebrities</span></h1>
+			<p class="hero__description">first, pick a team!</p>
+			<button class="main__btn"><a href="#">then, enter some names</a></button>
+		</div>
+	</div>
 
-<h1>{{ page.title }}</h1>
+	<!-- enter names section -->
+	<div class="main" id="input">
+		<div class="main__container">
+			<div class="main__image--container">
+				<div class="main__img--card">PLACEHOLDER FOR BOX</div>
+			</div>
+			<div class="main__content">
+				<h1>WHO?</h1>
+				<h2>proper names</h2>
+				<p>real or fictional</p>
+				<p>living or dead</p>
+				<button class="main__btn"><a href="#">it's my turn to give clues!</a></button>
+			</div>
+		</div>
+	</div>
+
+	<!-- my turn section -->
+	<div class="myturn" id="myturn">
+		<h1>clue for:</h1>
+		<div class="myturn__wrapper">
+			<div class="myturn__card">
+				<h2>holder for</h2>
+				<p>dynamic text</p>
+				<div class="myturn__btn"><button>end turn</button></div>
+			</div>
+			<div class="myturn__card">
+				<h2>are you ready</h2>
+				<p>take the leap</p>
+				<div class="myturn__btn"><button>end turn</button></div>
+			</div>
+			<div class="myturn__card">
+				<h2>full gradients</h2>
+				<p>100 combinations</p>
+				<div class="myturn__btn"><button>end turn</button></div>
+			</div>
+			<div class="myturn__card">
+				<h2>infinite choices</h2>
+				<p>thousands of colors</p>
+				<div class="myturn__btn"><button>end turn</button></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- waiting section -->
+	<div class="main" id="waiting">
+		<div class="main__container">
+			<div class="main__image--container">
+				<div class="main__img--card">PLACEHOLDER FOR BOX</div>
+			</div>
+			<div class="main__content">
+				<h1>WHO?</h1>
+				<h2>proper names</h2>
+				<p>real or fictional</p>
+				<p>living or dead</p>
+				<button class="main__btn"><a href="#">it's my turn to give clues!</a></button>
+			</div>
+		</div>
+	</div>
+
+	<script src="app.js"></script>
+</body>	
+</html>
+
+
+
+
+
+<!-- ---
+layout: default
+title: this is a test!
+---
+<div class="blurb"
+     <h1>trying things, we'll see</h1>
+<p><a href="/celebs">try this!</a></p>
+</div><!-- /.blurb -->
+
+<!-- built using http://jmcglone.com/guides/github-pages/ --> 

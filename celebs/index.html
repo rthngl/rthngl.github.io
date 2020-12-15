@@ -145,7 +145,7 @@
 	</div>
 	<script>
 		//here's where I'm adding stuff!
-		function writeUserData(userId, name, email, imageUrl) {
+		function submitname(userId, name, email, imageUrl) {
 			firebase.database().ref('users/' + userId).set({
 				celeb: "userinput",
 			});

@@ -30,24 +30,19 @@
 		// Initialize Firebase
 		firebase.initializeApp(firebaseConfig);
 		firebase.analytics();
-		var firebaseRef = new Firebase('http://INSTANCE.firebaseio.com');
-
-		function firebasetest() {
-			firebaseRef.child('.info/connected').on('value', function(connectedSnap) {
-			if (connectedSnap.val() === true) {
-				/* we're connected! */
-				document.write("connected");
-			} else {
-				/* we're disconnected! */
-				document.write("fuck");
-			}
-			});
-		}
 
 		//trying this variable declaration
 		import firebase from "firebase/app";
 		import "firebase/database";
 		var database = firebase.database();
+		var myFirebase = firebase.database().ref();
+		var inBowl = myFirebase.child("inBowl");
+
+		// saving info?
+		function submitname() {
+			inBowl.push({userinput})
+		}
+
 	</script>
 	<!-- navbar section -->
 	<nav class="navbar">
@@ -143,20 +138,6 @@
 			</div>
 		</div>
 	</div>
-	<script>
-		//here's where I'm adding stuff!
-		function writeUserData(userId, name, email, imageUrl) {
-			firebase.database().ref('users/' + userId).set({
-				username: name,
-				email: email,
-				profile_picture : imageUrl
-			});
-		}
-		// function submitname() {
-		// var celeb = document.getElementById("userinput").value;
-		// document.write(celeb);
-		// }
-	</script>
 	<script src="app.js"></script>
 </body>	
 </html>

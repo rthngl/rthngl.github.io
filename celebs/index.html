@@ -6,8 +6,6 @@
 	content="width=device-width, initial-scale=1.0">
 	<title>celebs</title>
 	<link rel="stylesheet" type="text/css" href="styles.css">
-</head>
-<body>
 	<!-- The core Firebase JS SDK is always required and must be listed first -->
 	<script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-app.js"></script>
 
@@ -27,23 +25,10 @@
 		  appId: "1:427947460588:web:f471bfdc2c6d5bc5d722c9",
 		  measurementId: "G-3YTV00EREN"
 		};
-		// Initialize Firebase
-		firebase.initializeApp(firebaseConfig);
-		firebase.analytics();
-
-		//trying this variable declaration
-		import firebase from "firebase/app";
-		import "firebase/database";
-		var database = firebase.database();
-		var myFirebase = firebase.database().ref();
-		var inBowl = myFirebase.child("inBowl");
-
-		// saving info?
-		function submitname() {
-			inBowl.push({userinput})
-		}
-
 	</script>
+</head>
+<body>
+	<script src="app.js"></script>
 	<!-- navbar section -->
 	<nav class="navbar">
 		<div class="navbar__container">
@@ -84,7 +69,7 @@
 			<div class="main__image--container">
 				<div class="main__img--card">PLACEHOLDER FOR BOX</div>
 				<input type="text" id="userinput"> <br>
-				<button onclick="submitname()" > submit </button> <br>
+				<button class="main__btn">submit</button>
 			</div>
 			<div class="main__content">
 				<h1>WHO?</h1>
@@ -138,7 +123,6 @@
 			</div>
 		</div>
 	</div>
-	<script src="app.js"></script>
 </body>	
 </html>
 

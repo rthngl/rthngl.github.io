@@ -31,15 +31,18 @@
 		firebase.initializeApp(firebaseConfig);
 		firebase.analytics();
 		var firebaseRef = new Firebase('http://INSTANCE.firebaseio.com');
-		// firebaseRef.child('.info/connected').on('value', function(connectedSnap) {
-		// if (connectedSnap.val() === true) {
-		// 	/* we're connected! */
-		// 	document.write("connected");
-		// } else {
-		// 	/* we're disconnected! */
-		// 	document.write("fuck");
-		// }
-		// });
+
+		function firebasetest() {
+			firebaseRef.child('.info/connected').on('value', function(connectedSnap) {
+			if (connectedSnap.val() === true) {
+				/* we're connected! */
+				document.write("connected");
+			} else {
+				/* we're disconnected! */
+				document.write("fuck");
+			}
+			});
+		}
 	</script>
 	<!-- navbar section -->
 	<nav class="navbar">
@@ -136,16 +139,17 @@
 		</div>
 	</div>
 	<script>
-		// here's where I'm adding stuff!
+		//here's where I'm adding stuff!
 		function submitname() {
 			var celeb = document.getElementById("userinput").value;
-			firebase.database().ref("inBowl").set({
+			firebase.database().ref("celebs--rae-default-rtdb").set({
 				name: celeb //document.getElementById("userinput").value
 			});
 		}
-		//function submitname() {
-		//var celeb = document.getElementById("userinput").value;
-		//}
+		// function submitname() {
+		// var celeb = document.getElementById("userinput").value;
+		// document.write(celeb);
+		// }
 	</script>
 	<script src="app.js"></script>
 </body>	

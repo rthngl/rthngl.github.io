@@ -107,8 +107,8 @@ var config = {
   // Get a reference to the recommendations object of your Firebase.
   // Note: this doesn't exist yet. But when we write to our Firebase using
   // this reference, it will create this object for us!
-  var inBowl = myFirebase.child("inBowl");
+  var recs = myFirebase.child("inBowl");
   
   // Push our first recommendation to the end of the list and assign it a
   // unique ID automatically.
-  inBowl.push("try this");
+  recs.push("try this");

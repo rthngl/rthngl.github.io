@@ -8,6 +8,12 @@
 	<link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-app.js"></script>
+
+	<!-- TODO: Add SDKs for Firebase products that you want to use
+		https://firebase.google.com/docs/web/setup#available-libraries -->
+	<script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-analytics.js"></script>
 	<script>
 		// Your web app's Firebase configuration
 		// For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -25,15 +31,15 @@
 		firebase.initializeApp(firebaseConfig);
 		firebase.analytics();
 		var firebaseRef = new Firebase('http://INSTANCE.firebaseio.com');
-		firebaseRef.child('.info/connected').on('value', function(connectedSnap) {
-		if (connectedSnap.val() === true) {
-			/* we're connected! */
-			document.write("connected");
-		} else {
-			/* we're disconnected! */
-			document.write("fuck");
-		}
-		});
+		// firebaseRef.child('.info/connected').on('value', function(connectedSnap) {
+		// if (connectedSnap.val() === true) {
+		// 	/* we're connected! */
+		// 	document.write("connected");
+		// } else {
+		// 	/* we're disconnected! */
+		// 	document.write("fuck");
+		// }
+		// });
 	</script>
 	<!-- navbar section -->
 	<nav class="navbar">
@@ -129,17 +135,11 @@
 			</div>
 		</div>
 	</div>
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-app.js"></script>
-
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-<script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-analytics.js"></script>
 	<script>
 		// here's where I'm adding stuff!
 		function submitname() {
 			var celeb = document.getElementById("userinput").value;
-			firebase.database().ref("inBowl").update({
+			firebase.database().ref("inBowl").set({
 				name: celeb //document.getElementById("userinput").value
 			});
 		}

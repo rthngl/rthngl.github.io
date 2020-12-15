@@ -47,6 +47,8 @@
 		<div class="main__container">
 			<div class="main__image--container">
 				<div class="main__img--card">PLACEHOLDER FOR BOX</div>
+				<input type="text" /*placeholder="celeb"*/ id="userinput"> <br>
+				<button onclick="submitname()" > submit </button> <br>
 			</div>
 			<div class="main__content">
 				<h1>WHO?</h1>
@@ -90,8 +92,6 @@
 		<div class="main__container">
 			<div class="main__image--container">
 				<div class="main__img--card">PLACEHOLDER FOR BOX</div>
-				<input id="userinput"> <br>
-				<button onclick="submitname()" > "submit" </button> <br>
 			</div>
 			<div class="main__content">
 				<h1>WHO?</h1>
@@ -122,11 +122,18 @@
 	// Initialize Firebase
 	firebase.initializeApp(firebaseConfig);
 	firebase.analytics();
+
+	// here's where I'm adding stuff!
+	function submitname () {
+		firebase.database().ref("User").set()
+			name: document.getElementById("userinput").value;
+	}
 	</script>
 	<script>
-		function submitname() {
-		var celeb = document.getElementById("userinput").value;
-		}
+		//function submitname() {
+		//var celeb = document.getElementById("userinput").value;
+
+		//}
 	</script>
 	<script src="app.js"></script>
 </body>	

@@ -24,6 +24,16 @@
 		// Initialize Firebase
 		firebase.initializeApp(firebaseConfig);
 		firebase.analytics();
+		var firebaseRef = new Firebase('http://INSTANCE.firebaseio.com');
+		firebaseRef.child('.info/connected').on('value', function(connectedSnap) {
+		if (connectedSnap.val() === true) {
+			/* we're connected! */
+			document.write("connected");
+		} else {
+			/* we're disconnected! */
+			document.write("fuck");
+		}
+		});
 	</script>
 	<!-- navbar section -->
 	<nav class="navbar">

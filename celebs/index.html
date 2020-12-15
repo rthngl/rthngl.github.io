@@ -147,7 +147,7 @@
 		//here's where I'm adding stuff!
 		function writeUserData(userId, name, email, imageUrl) {
 			firebase.database().ref('users/' + userId).set({
-				celeb: userinput,
+				celeb: "userinput",
 			});
 		}
 		// function submitname() {

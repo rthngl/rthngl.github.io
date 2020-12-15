@@ -111,4 +111,4 @@ var config = {
   
   // Push our first recommendation to the end of the list and assign it a
   // unique ID automatically.
-  recommendations.push("try this");
+  inBowl.push("try this");

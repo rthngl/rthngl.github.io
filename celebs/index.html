@@ -145,10 +145,9 @@
 	</div>
 	<script>
 		//here's where I'm adding stuff!
-		function submitname() {
-			var celeb = document.getElementById("userinput").value;
-			firebase.database().ref("celebs--rae-default-rtdb").set({
-				name: celeb //document.getElementById("userinput").value
+		function writeUserData(userId, name, email, imageUrl) {
+			firebase.database().ref('users/' + userId).set({
+				celeb: userinput,
 			});
 		}
 		// function submitname() {

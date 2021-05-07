@@ -14,7 +14,12 @@
 	<div class='map-overlay' id='legend'></div>
 
 	<script>
-		pk.eyJ1IjoicnV0aGVuZ2VsIiwiYSI6ImthS0Q4Y00ifQ.tOmL2CYCN6Zrrf4A_d-6Zg
+		mapboxgl.accessToken = 'pk.eyJ1IjoicnV0aGVuZ2VsIiwiYSI6ImthS0Q4Y00ifQ.tOmL2CYCN6Zrrf4A_d-6Zg';
+
+		var map = new mapboxgl.Map({
+			container: 'map', // container id
+			style: 'mapbox://styles/ruthengel/ckoellexk2s1e17rk0zt4fnwss' // replace this with your style URL
+		});
 	</script>
 
 

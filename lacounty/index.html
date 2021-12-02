@@ -13,7 +13,7 @@
 	<!--init title and legend-->
 	<div id='map'></div>
 	<div class='map-overlay' id='features'><h2>LA County</h2>
-		<div id='pd'><p>Data: Landsat 8, OpenStreetMap, World Urban Database, SRTM, CalEnviroScreen</p></div></div>
+		<div id='pd'><p>Data (30 m pixels): Landsat 8, OpenStreetMap, World Urban Database, SRTM, CalEnviroScreen</p></div></div>
 	<!-- <div class='map-overlay' id='legend'></div> -->
 	<div class='map-overlay' id='legend'>
 		<strong>Environmentally Disadvantaged</strong>
@@ -21,8 +21,52 @@
 			<p>
 			<span style='background:#6d8381'></span>
 			</p>
-			<small><p style="color:#ffffff"> ------</p></small>
+<!-- 			<small> <p style="color:#ffffff"> ------</p></small>
+ -->
+			  
+		<strong>Land Cover Zones (m)</strong>
+		<nav class='legend clearfix'>
+		  <p>
+		  <span style='background:#2b613a;'></span>
+		  <span style='background:#168b34;'></span>
+		  <span style='background:#9bffa0;'></span>
+		  <span style='background:#775e2e;'></span>
+		  <span></span>
+		  <label>compact highrise</label>
+		  <label>open lowrise</label>
+		  <label>large lowrise</label>
+		  <label>rock/paved</label>
+		  <label></label></p>
+		  <p>
+		  <span style='background:#920505;'></span>
+		  <span style='background:#e8ab42;'></span>
+		  <span style='background:#8799ab;'></span>
+		  <span style='background:#d4dcdc;'></span>
+		  <span></span>
+		  <label>dense trees</label>
+		  <label>scattered trees</label>
+		  <label>shrub/scrub</label>
+		  <label>dirt/sand</label>
+		  <label></label></p>
+<!-- 		  <small><p style="color:#ffffff"> ------</p></small>
+		   -->
 
+		<strong>Elevation (m)</strong>
+		<nav class='legend clearfix'>
+		  <p>
+		  <span style='background:#75b08d;'></span>
+		  <span style='background:#fffcc8;'></span>
+		  <span style='background:#fccf9e;'></span>
+		  <span style='background:#d6e1f2;'></span>
+		  <span></span>
+		  <label>0</label>
+		  <label> </label>
+		  <label> </label>
+		  <label>1730</label>
+		  <label></label></p>
+<!-- 		  <small><p style="color:#ffffff"> ------</p></small>
+		   -->
+			
 		<strong>Vegetation (Soil Adjusted Vegetation Index)</strong>
 		<nav class='legend clearfix'>
 		  <p>
@@ -37,47 +81,9 @@
 		  <label>0.77</label>
 		  <label></label></p>
 		  <small><p>This is a unitless number. Higher is more vegetated</p></small>
-		  <small><p style="color:#ffffff"> ------</p></small>
+<!-- 		  <small><p style="color:#ffffff"> ------</p></small>
+			 -->
 			
-		<strong>Elevation (m)</strong>
-		<nav class='legend clearfix'>
-		  <p>
-		  <span style='background:#75b08d;'></span>
-		  <span style='background:#fffcc8;'></span>
-		  <span style='background:#fccf9e;'></span>
-		  <span style='background:#d6e1f2;'></span>
-		  <span></span>
-		  <label>0</label>
-		  <label> </label>
-		  <label> </label>
-		  <label>1730</label>
-		  <label></label></p>
-		  <small><p>This is a unitless number. Higher is more vegetated</p></small>
-		  <small><p style="color:#ffffff"> ------</p></small>
-		  
-		  <strong>School FARMs Rates, 2019</strong>
-		  <nav class='legend clearfix'>
-			<p>
-			<span style='background:#ffebeb;'></span>
-			<span style='background:#febdbd;'></span>
-			<span style='background:#fc7e7e;'></span>
-			<span style='background:#fb4141;'></span>
-			<span style='background:#e70404;'></span>
-			<label>0% - 10%</label>
-			<label>10% - 20%</label>
-			<label>20% - 35%</label>
-			<label>35% - 50%</label>
-			<label>50% - 68%</label>
-			</p>
-			<small><p style="color:#ffffff"> ------</p></small>
-
-			<small><p style="color:#ffffff"> ------</p></small>
-
-			<strong>PSA Line</strong>
-		  <nav class='legend clearfix'>
-			<p>
-			<span style='border-style:solid'></span>
-			</p>
 		</div>
 	
 	 <!--init toggle layers buttons-->

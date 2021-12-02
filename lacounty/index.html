@@ -13,8 +13,7 @@
 	<!--init title and legend-->
 	<div id='map'></div>
 	<div class='map-overlay' id='features'><h2>LA County</h2>
-		<div id='pd'><p>Data: Landsat 8, OpenStreetMap, /
-			World Urban Database, SRTM, CalEnviroScreen</p></div></div>
+		<div id='pd'><p>Data: Landsat 8, OpenStreetMap, World Urban Database, SRTM, CalEnviroScreen</p></div></div>
 	<!-- <div class='map-overlay' id='legend'></div> -->
 	<div class='map-overlay' id='legend'>
 		<strong>Zoning</strong>
@@ -90,33 +89,33 @@
 		// Wait until the map has finished loading.
 		map.on('load', function () {
 
-			//add census tracts
-			map.addSource('census_tracts', {
-				type: 'vector',
-				url: 'mapbox://ruthengel.b939umoa'
+			//add lczs
+			map.addSource('lcz_la_color', {
+				type: 'raster',
+				url: 'mapbox://ruthengel.1jov6a2u'
 			});
 			map.addLayer({
-				'id': 'Percent Black Residents',
-				'type': 'fill',
-				'source': 'census_tracts',
+				'id': 'Land Cover Zones',
+				'type': 'raster',
+				'source': 'lcz_la_color',
 				'layout': {
 				// Make the layer visible by default.
 					'visibility': 'visible'
 				},
-				'paint': {
-					'fill-color': [
-						'step',
-						['get', '_BLACKALL_PERC'],
-						"hsl(222, 48%, 96%)",
-						15.5,
-						"hsl(207, 93%, 80%)",
-						28.2,
-						"hsl(216, 77%, 56%)",
-						40.9,
-						"hsl(217, 88%, 31%)"
-					]
-				},
-				'source-layer': 'hocotracts-4dfx8t'
+// 				'paint': {
+// 					'fill-color': [
+// 						'step',
+// 						['get', '_BLACKALL_PERC'],
+// 						"hsl(222, 48%, 96%)",
+// 						15.5,
+// 						"hsl(207, 93%, 80%)",
+// 						28.2,
+// 						"hsl(216, 77%, 56%)",
+// 						40.9,
+// 						"hsl(217, 88%, 31%)"
+// 					]
+// 				},
+				'source-layer': 'lcz_la_color-c9qmc9'
 			});
 
 			//add nonresidential

@@ -89,36 +89,7 @@
 		// Wait until the map has finished loading.
 		map.on('load', function () {
 
-			//add lczs
-			map.addSource('lcz_la_color', {
-				type: 'raster',
-				url: 'mapbox://ruthengel.1jov6a2u'
-			});
-			map.addLayer({
-				'id': 'Land Cover Zones',
-				'type': 'raster',
-				'source': 'lcz_la_color',
-				'layout': {
-				// Make the layer visible by default.
-					'visibility': 'visible'
-				},
-// 				'paint': {
-// 					'fill-color': [
-// 						'step',
-// 						['get', '_BLACKALL_PERC'],
-// 						"hsl(222, 48%, 96%)",
-// 						15.5,
-// 						"hsl(207, 93%, 80%)",
-// 						28.2,
-// 						"hsl(216, 77%, 56%)",
-// 						40.9,
-// 						"hsl(217, 88%, 31%)"
-// 					]
-// 				},
-				'source-layer': 'lcz_la_color-c9qmc9'
-			});
-
-			//add nonresidential
+			//add disadvantaged
 			map.addSource('disad_la', {
 				type: 'vector',
 				url: 'mapbox://ruthengel.ayu1idmb'
@@ -138,24 +109,37 @@
 				},
 				'source-layer': 'disad_la-1owqii'
 			});
-
-			//add multifamily
-			map.addSource('hoco_multifamily', {
-				type: 'vector',
-				url: 'mapbox://ruthengel.dcu3z67n'
+			
+			//add lczs
+			map.addSource('lcz_la_color', {
+				type: 'raster',
+				url: 'mapbox://ruthengel.1jov6a2u'
 			});
 			map.addLayer({
-				'id': 'Multifamily Zones',
-				'type': 'fill',
-				'source': 'hoco_multifamily',
+				'id': 'Land Cover Zones',
+				'type': 'raster',
+				'source': 'lcz_la_color',
 				'layout': {
 				// Make the layer visible by default.
 					'visibility': 'visible'
 				},
-				'paint': {
-					'fill-color': '#fad73d'
+				'source-layer': 'lcz_la_color-c9qmc9'
+			});
+
+			//add savi
+			map.addSource('savi_la', {
+				type: 'raster',
+				url: 'mapbox://ruthengel.1gf7nfkv'
+			});
+			map.addLayer({
+				'id': 'Greenness (SAVI)',
+				'type': 'raster',
+				'source': 'savi_la',
+				'layout': {
+				// Make the layer visible by default.
+					'visibility': 'visible'
 				},
-				'source-layer': 'hoco_multifamily-7xawfx'
+				'source-layer': 'savi_la-36zt0h'
 			});
 		
 			// add schools layer

@@ -1,0 +1,336 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<!-- MAPBOX INITIAL -->
+	<script src='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
+	<link href='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet' />
+</head>
+
+<body>
+	<!--link to css-->
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	
+	<!--init title and legend-->
+	<div id='map'></div>
+	<div class='map-overlay' id='features'><h2>HoCo by Zoning, Race, and School</h2>
+		<div id='pd'><p>Data: ACS 5yr Census Tracts, HoCo Data, HoCo Zoning</p></div></div>
+	<!-- <div class='map-overlay' id='legend'></div> -->
+	<div class='map-overlay' id='legend'>
+		<strong>Zoning</strong>
+		  <nav class='legend clearfix'>
+			<p>
+			<span style='background:#fad73d'></span>
+			<label>Multifamily</label>
+			<span style='background:#ffffff'></span>
+			<span style='background:#ffffff'></span>
+			<span style='background:#ffffff'></span></p>
+			<p>
+			<span style='background:#6d8381'></span>
+			<label>Nonresidential</label>
+			<span style='background:#ffffff'></span>
+			<span style='background:#ffffff'></span>
+			<span style='background:#ffffff'></span>
+			</p>
+			<small><p style="color:#ffffff"> ------</p></small>
+
+		<strong>Percent Black Residents, 2019</strong>
+		<nav class='legend clearfix'>
+		  <p>
+		  <span style='background:#f0f3fa;'></span>
+		  <span style='background:#9dd1fb;'></span>
+		  <span style='background:#387ee5;'></span>
+		  <span style='background:#093f95;'></span>
+		  <span></span>
+		  <label>2% - 16%</label>
+		  <label>16% - 28%</label>
+		  <label>28% - 41%</label>
+		  <label>41% - 54%</label>
+		  <label></label></p>
+		  <small><p>Countywide Average: 21%</p></small>
+		  <small><p style="color:#ffffff"> ------</p></small>
+		  
+		  <strong>School FARMs Rates, 2019</strong>
+		  <nav class='legend clearfix'>
+			<p>
+			<span style='background:#ffebeb;'></span>
+			<span style='background:#febdbd;'></span>
+			<span style='background:#fc7e7e;'></span>
+			<span style='background:#fb4141;'></span>
+			<span style='background:#e70404;'></span>
+			<label>0% - 10%</label>
+			<label>10% - 20%</label>
+			<label>20% - 35%</label>
+			<label>35% - 50%</label>
+			<label>50% - 68%</label>
+			</p>
+			<small><p style="color:#ffffff"> ------</p></small>
+
+			<small><p style="color:#ffffff"> ------</p></small>
+
+			<strong>PSA Line</strong>
+		  <nav class='legend clearfix'>
+			<p>
+			<span style='border-style:solid'></span>
+			</p>
+		</div>
+	
+	 <!--init toggle layers buttons-->
+	<nav id="menu"></nav>
+
+	<!-- ADD BASEMAP AND ALL THE LAYERS -->	
+	<script>
+		mapboxgl.accessToken = 'pk.eyJ1IjoicnV0aGVuZ2VsIiwiYSI6ImthS0Q4Y00ifQ.tOmL2CYCN6Zrrf4A_d-6Zg';
+
+		var map = new mapboxgl.Map({
+			container: 'map', // container id
+			style: 'mapbox://styles/ruthengel/ckoellexk2s1e17rk0zt4fnws'
+		});
+
+		// Wait until the map has finished loading.
+		map.on('load', function () {
+
+			//add census tracts
+			map.addSource('census_tracts', {
+				type: 'vector',
+				url: 'mapbox://ruthengel.b939umoa'
+			});
+			map.addLayer({
+				'id': 'Percent Black Residents',
+				'type': 'fill',
+				'source': 'census_tracts',
+				'layout': {
+				// Make the layer visible by default.
+					'visibility': 'visible'
+				},
+				'paint': {
+					'fill-color': [
+						'step',
+						['get', '_BLACKALL_PERC'],
+						"hsl(222, 48%, 96%)",
+						15.5,
+						"hsl(207, 93%, 80%)",
+						28.2,
+						"hsl(216, 77%, 56%)",
+						40.9,
+						"hsl(217, 88%, 31%)"
+					]
+				},
+				'source-layer': 'hocotracts-4dfx8t'
+			});
+
+			//add nonresidential
+			map.addSource('hoco_nonresidential', {
+				type: 'vector',
+				url: 'mapbox://ruthengel.0ghgs90p'
+			});
+			map.addLayer({
+				'id': 'Nonresidential Zones',
+				'type': 'fill',
+				'source': 'hoco_nonresidential',
+				'minzoom': 0,
+				'maxzoom': 22,
+				'layout': {
+				// Make the layer visible by default.
+					'visibility': 'visible'           
+				},
+				'paint': {
+					'fill-color': '#6d8381'
+				},
+				'source-layer': 'hoco_nonresidential'//-6221ip'
+			});
+
+			//add multifamily
+			map.addSource('hoco_multifamily', {
+				type: 'vector',
+				url: 'mapbox://ruthengel.dcu3z67n'
+			});
+			map.addLayer({
+				'id': 'Multifamily Zones',
+				'type': 'fill',
+				'source': 'hoco_multifamily',
+				'layout': {
+				// Make the layer visible by default.
+					'visibility': 'visible'
+				},
+				'paint': {
+					'fill-color': '#fad73d'
+				},
+				'source-layer': 'hoco_multifamily-7xawfx'
+			});
+		
+			// add schools layer
+			map.addSource('hoco_schools', {
+				type: 'vector',
+				url: 'mapbox://ruthengel.8ruznmhb'
+			});
+			map.addLayer({
+				'id': 'School FARMs Rates',
+				'type': 'circle',
+				'source': 'hoco_schools',
+				'layout': {
+				// Make the layer visible by default.
+					'visibility': 'visible'
+				},
+				'paint': {
+					'circle-radius': 5,
+					'circle-color': [
+						'step',
+						["get", "f_FARM_PERC"],
+						"#ffebeb",
+						10,
+						"hsl(0, 98%, 87%)",
+						20,
+						"hsl(0, 95%, 74%)",
+						35,
+						"hsl(0, 96%, 62%)",
+						50,
+						"#e70404",
+						67.6,
+						"#e70404"
+					],
+					'circle-stroke-width': 1
+				},
+				'source-layer': 'hoco_schools-a5djrw'
+			});
+
+			//add PSA line
+			map.addSource('psa_line', {
+				type: 'vector',
+				url: 'mapbox://ruthengel.6odeac54'
+			});
+			map.addLayer({
+				'id': 'psa_line',
+				'type': 'line',
+				'source': 'psa_line',
+				'layout': {
+				// Make the layer visible by default.
+					'visibility': 'visible'
+				},
+				'paint': {
+					'line-color': '#000000',
+					'line-width': 3
+				},
+				'source-layer': 'hoco_PSA_line-431y4e'
+			});
+
+			//add hoco border
+			map.addSource('hoco_border', {
+				type: 'vector',
+				url: 'mapbox://ruthengel.6836ccv1'
+			});
+			map.addLayer({
+				'id': 'hoco_border',
+				'type': 'line',
+				'source': 'hoco_border',
+				'layout': {
+				// Make the layer visible by default.
+					'visibility': 'visible'
+				},
+				'paint': {
+					'line-color': '#000000',
+					'line-width': 3
+				},
+				'source-layer': 'hoco_border-9ol3b5'
+			});
+
+		});
+		</script>
+
+		<!-- BUTTONS TO TOGGLE LAYERS ON AND OFF -->
+		<script>
+		// After the last frame rendered before the map enters an "idle" state.
+		map.on('idle', function () {
+			// If these layers have been added to the style,
+			// add the toggle buttons.
+			if (map.getLayer('Percent Black Residents') && map.getLayer('Multifamily Zones') 
+				&& map.getLayer('Nonresidential Zones') && map.getLayer('School FARMs Rates')) {
+				// Enumerate ids of the layers.
+				var toggleableLayerIds = ['Percent Black Residents', 'Multifamily Zones', 'Nonresidential Zones', 'School FARMs Rates'];
+				// Set up the corresponding toggle button for each layer.
+				for (var i = 0; i < toggleableLayerIds.length; i++) {
+					var id = toggleableLayerIds[i];
+					if (!document.getElementById(id)) {
+						// Create a link.
+						var link = document.createElement('a');
+						link.id = id;
+						link.href = '#';
+						link.textContent = id;
+						link.className = 'active';
+						// Show or hide layer when the toggle is clicked.
+						link.onclick = function (e) {
+							var clickedLayer = this.textContent;
+							e.preventDefault();
+							e.stopPropagation();
+							
+							var visibility = map.getLayoutProperty(
+								clickedLayer,
+								'visibility'
+							);
+						
+							// Toggle layer visibility by changing the layout object's visibility property.
+							if (visibility === 'visible') {
+								map.setLayoutProperty(
+									clickedLayer,
+									'visibility',
+									'none'
+								);
+								this.className = '';
+							} else {
+							this.className = 'active';
+								map.setLayoutProperty(
+									clickedLayer,
+									'visibility',
+									'visible'
+								);
+							}
+						};
+						
+						var layers = document.getElementById('menu');
+						layers.appendChild(link);
+					}
+				}
+			}
+		});
+	</script>
+
+	<!-- POPULATE LEGEND
+	<script>
+		// define layer names
+		var layers = [
+			'0-10',
+			'10-20',
+			'20-50',
+			'50-100',
+			'100-200',
+			'200-500',
+			'500-1000',
+			'1000+'
+		];
+		var colors = [
+			'#FFEDA0',
+			'#FED976',
+			'#FEB24C',
+			'#FD8D3C',
+			'#FC4E2A',
+			'#E31A1C',
+			'#BD0026',
+			'#800026'
+		];
+		for (i = 0; i < layers.length; i++) {
+			var layer = layers[i];
+			var color = colors[i];
+			var item = document.createElement('div');
+			var key = document.createElement('span');
+			key.className = 'legend-key';
+			key.style.backgroundColor = color;
+			
+			var value = document.createElement('span');
+			value.innerHTML = layer;
+			item.appendChild(key);
+			item.appendChild(value);
+			legend.appendChild(item);
+		}
+	</script> -->
+
+</body>
+</html>

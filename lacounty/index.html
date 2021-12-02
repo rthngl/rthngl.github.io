@@ -132,7 +132,7 @@
 				url: 'mapbox://ruthengel.1gf7nfkv'
 			});
 			map.addLayer({
-				'id': 'Greenness (SAVI)',
+				'id': 'Vegetation',
 				'type': 'raster',
 				'source': 'savi_la',
 				'layout': {
@@ -142,79 +142,20 @@
 				'source-layer': 'savi_la-36zt0h'
 			});
 		
-			// add schools layer
-			map.addSource('hoco_schools', {
-				type: 'vector',
-				url: 'mapbox://ruthengel.8ruznmhb'
+			// add elevation
+			map.addSource('elev_la', {
+				type: 'raster',
+				url: 'mapbox://ruthengel.98mbvh0d'
 			});
 			map.addLayer({
-				'id': 'School FARMs Rates',
-				'type': 'circle',
-				'source': 'hoco_schools',
+				'id': 'Elevation',
+				'type': 'raster',
+				'source': 'elev_la',
 				'layout': {
 				// Make the layer visible by default.
 					'visibility': 'visible'
 				},
-				'paint': {
-					'circle-radius': 5,
-					'circle-color': [
-						'step',
-						["get", "f_FARM_PERC"],
-						"#ffebeb",
-						10,
-						"hsl(0, 98%, 87%)",
-						20,
-						"hsl(0, 95%, 74%)",
-						35,
-						"hsl(0, 96%, 62%)",
-						50,
-						"#e70404",
-						67.6,
-						"#e70404"
-					],
-					'circle-stroke-width': 1
-				},
-				'source-layer': 'hoco_schools-a5djrw'
-			});
-
-			//add PSA line
-			map.addSource('psa_line', {
-				type: 'vector',
-				url: 'mapbox://ruthengel.6odeac54'
-			});
-			map.addLayer({
-				'id': 'psa_line',
-				'type': 'line',
-				'source': 'psa_line',
-				'layout': {
-				// Make the layer visible by default.
-					'visibility': 'visible'
-				},
-				'paint': {
-					'line-color': '#000000',
-					'line-width': 3
-				},
-				'source-layer': 'hoco_PSA_line-431y4e'
-			});
-
-			//add hoco border
-			map.addSource('hoco_border', {
-				type: 'vector',
-				url: 'mapbox://ruthengel.6836ccv1'
-			});
-			map.addLayer({
-				'id': 'hoco_border',
-				'type': 'line',
-				'source': 'hoco_border',
-				'layout': {
-				// Make the layer visible by default.
-					'visibility': 'visible'
-				},
-				'paint': {
-					'line-color': '#000000',
-					'line-width': 3
-				},
-				'source-layer': 'hoco_border-9ol3b5'
+				'source-layer': 'elev_la-aj6i5q'
 			});
 
 		});
@@ -226,10 +167,10 @@
 		map.on('idle', function () {
 			// If these layers have been added to the style,
 			// add the toggle buttons.
-			if (map.getLayer('Percent Black Residents') && map.getLayer('Multifamily Zones') 
-				&& map.getLayer('Nonresidential Zones') && map.getLayer('School FARMs Rates')) {
+			if (map.getLayer('Environmentally Disadvantaged Areas') && map.getLayer('Land Cover Zones') 
+				&& map.getLayer('Vegetation') && map.getLayer('Elevation')) {
 				// Enumerate ids of the layers.
-				var toggleableLayerIds = ['Percent Black Residents', 'Multifamily Zones', 'Nonresidential Zones', 'School FARMs Rates'];
+				var toggleableLayerIds = ['Environmentally Disadvantaged Areas', 'Land Cover Zones', 'Vegetation', 'Elevation'];
 				// Set up the corresponding toggle button for each layer.
 				for (var i = 0; i < toggleableLayerIds.length; i++) {
 					var id = toggleableLayerIds[i];
@@ -276,45 +217,6 @@
 			}
 		});
 	</script>
-
-	<!-- POPULATE LEGEND
-	<script>
-		// define layer names
-		var layers = [
-			'0-10',
-			'10-20',
-			'20-50',
-			'50-100',
-			'100-200',
-			'200-500',
-			'500-1000',
-			'1000+'
-		];
-		var colors = [
-			'#FFEDA0',
-			'#FED976',
-			'#FEB24C',
-			'#FD8D3C',
-			'#FC4E2A',
-			'#E31A1C',
-			'#BD0026',
-			'#800026'
-		];
-		for (i = 0; i < layers.length; i++) {
-			var layer = layers[i];
-			var color = colors[i];
-			var item = document.createElement('div');
-			var key = document.createElement('span');
-			key.className = 'legend-key';
-			key.style.backgroundColor = color;
-			
-			var value = document.createElement('span');
-			value.innerHTML = layer;
-			item.appendChild(key);
-			item.appendChild(value);
-			legend.appendChild(item);
-		}
-	</script> -->
 
 </body>
 </html>

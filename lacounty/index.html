@@ -176,10 +176,10 @@
 		map.on('idle', function () {
 			// If these layers have been added to the style,
 			// add the toggle buttons.
-			if (map.getLayer('Environmentally Disadvantaged Areas') && map.getLayer('Land Cover Zones') 
-				&& map.getLayer('Vegetation') && map.getLayer('Elevation')) {
+			if (map.getLayer('Elevation') && map.getLayer('Vegetation') 
+				&& map.getLayer('Land Cover Zones') && map.getLayer('Environmentally Disadvantaged Areas')) {
 				// Enumerate ids of the layers.
-				var toggleableLayerIds = ['Environmentally Disadvantaged Areas', 'Land Cover Zones', 'Vegetation', 'Elevation'];
+				var toggleableLayerIds = ['Elevation', 'Vegetation', 'Land Cover Zones', 'Environmentally Disadvantaged Areas'];
 				// Set up the corresponding toggle button for each layer.
 				for (var i = 0; i < toggleableLayerIds.length; i++) {
 					var id = toggleableLayerIds[i];

@@ -119,14 +119,14 @@
 			});
 
 			//add nonresidential
-			map.addSource('hoco_nonresidential', {
+			map.addSource('disad_la', {
 				type: 'vector',
-				url: 'mapbox://ruthengel.0ghgs90p'
+				url: 'mapbox://ruthengel.ayu1idmb'
 			});
 			map.addLayer({
-				'id': 'Nonresidential Zones',
+				'id': 'Environmentally Disadvantaged Areas',
 				'type': 'fill',
-				'source': 'hoco_nonresidential',
+				'source': 'disad_la',
 				'minzoom': 0,
 				'maxzoom': 22,
 				'layout': {
@@ -136,7 +136,7 @@
 				'paint': {
 					'fill-color': '#6d8381'
 				},
-				'source-layer': 'hoco_nonresidential'//-6221ip'
+				'source-layer': 'disad_la-1owqii'
 			});
 
 			//add multifamily
